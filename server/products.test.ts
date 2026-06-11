@@ -197,8 +197,9 @@ describe("Categories Router", () => {
 
   describe("Category Creation", () => {
     it("should allow admin to create a category", async () => {
+      const uniqueName = `Test Category ${Date.now()}`;
       const result = await adminCaller.categories.create({
-        name: "Test Category",
+        name: uniqueName,
         description: "Test Description",
       });
 
@@ -209,9 +210,10 @@ describe("Categories Router", () => {
   describe("Category Update", () => {
     it("should allow admin to update a category", async () => {
       try {
+        const uniqueName = `Updated Category ${Date.now()}`;
         const result = await adminCaller.categories.update({
           id: 1,
-          name: "Updated Category",
+          name: uniqueName,
           description: "Updated Description",
         });
 
@@ -222,6 +224,7 @@ describe("Categories Router", () => {
       }
     });
   });
+
 
   describe("Category Deletion", () => {
     it("should allow admin to delete a category", async () => {
