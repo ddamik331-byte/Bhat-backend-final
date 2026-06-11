@@ -16,10 +16,15 @@
   <body class="dark">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script
-      defer
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
+    <script>
+      if (typeof %VITE_ANALYTICS_ENDPOINT% !== 'undefined' && %VITE_ANALYTICS_ENDPOINT% && typeof %VITE_ANALYTICS_WEBSITE_ID% !== 'undefined' && %VITE_ANALYTICS_WEBSITE_ID%) {
+        const script = document.createElement('script');
+        script.defer = true;
+        script.src = '%VITE_ANALYTICS_ENDPOINT%/umami';
+        script.setAttribute('data-website-id', '%VITE_ANALYTICS_WEBSITE_ID%');
+        document.head.appendChild(script);
+      }
+    </script>
   </body>
 
 </html>
