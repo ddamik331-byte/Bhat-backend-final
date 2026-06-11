@@ -50,7 +50,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           <Link href="/admin">
             <a className={`flex items-center gap-2 font-display font-bold text-primary ${!sidebarOpen && "justify-center"}`}>
               <span className="text-2xl">⚡</span>
-              {sidebarOpen && <span>Admin</span>}
+              {sidebarOpen && <span className="text-sm">Bhat Clothes</span>}
             </a>
           </Link>
         </div>

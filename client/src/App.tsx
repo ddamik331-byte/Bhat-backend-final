@@ -4,12 +4,9 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Home from "./pages/Home";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Loader2 } from "lucide-react";
 
-const Shop = lazy(() => import("./pages/Shop"));
-const ProductDetail = lazy(() => import("./pages/ProductDetail"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const AdminProducts = lazy(() => import("./pages/AdminProducts"));
 const AdminCategories = lazy(() => import("./pages/AdminCategories"));
@@ -23,20 +20,15 @@ function LoadingFallback() {
 }
 
 function Router() {
-  // make sure to consider if you need authentication for certain routes
+  // Redirect root to admin dashboard
+  useEffect(() => {
+    if (window.location.pathname === "/") {
+      window.location.href = "/admin";
+    }
+  }, []);
+
   return (
     <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/shop"}>
-        <Suspense fallback={<LoadingFallback />}>
-          <Shop />
-        </Suspense>
-      </Route>
-      <Route path={"/product/:id"}>
-        <Suspense fallback={<LoadingFallback />}>
-          <ProductDetail />
-        </Suspense>
-      </Route>
       <Route path={"/admin"}>
         <Suspense fallback={<LoadingFallback />}>
           <AdminDashboard />
@@ -58,11 +50,6 @@ function Router() {
     </Switch>
   );
 }
-
-// NOTE: About Theme
-// - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
-//   to keep consistent foreground/background color across components
-// - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
 
 function App() {
   return (

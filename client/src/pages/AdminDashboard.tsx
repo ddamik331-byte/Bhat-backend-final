@@ -16,8 +16,8 @@ export default function AdminDashboard() {
       <div className="space-y-8">
         {/* Page Header */}
         <div>
-          <h1 className="text-4xl font-display font-bold mb-2">Dashboard</h1>
-          <p className="text-foreground/70">Welcome to your admin panel. Manage your products and categories here.</p>
+          <h1 className="text-4xl font-display font-bold mb-2">Bhat Imported Clothes - Admin Dashboard</h1>
+          <p className="text-foreground/70">Manage your products and categories here.</p>
         </div>
 
         {/* Stats Grid */}
